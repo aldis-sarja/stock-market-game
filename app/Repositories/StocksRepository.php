@@ -13,4 +13,6 @@ interface StocksRepository
     public function getStock(string $symbol, int $numberOfAttempts);
 
     public function getSymbols(): ?array;
+
+    public function saveStock($symbol, $data);
 }

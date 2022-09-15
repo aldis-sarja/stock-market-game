@@ -23,12 +23,14 @@ class StocksLookUpService
         return $stock;
     }
 
-    public function search(string $symbol): ?Stock
+    public function search(string $symbol)
     {
         $stock = Stock::firstWhere('symbol', $symbol);
         if (!$stock) {
             $stock = $this->stocksRepository->getStock($symbol,5);
+            $stock = $this->stocksRepository->saveStock($symbol, $stock);
         }
+
         return $stock;
     }
 }

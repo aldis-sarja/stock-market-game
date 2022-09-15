@@ -10,6 +10,8 @@
 
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
+{{--    <h4 class="text-center font-serif  uppercase text-4xl xl:text-5xl"> Stock Market Game</h4>--}}
+
     <div class="flex justify-center py-2">
         <div class="flex-row py-4">
         @if ($errors)

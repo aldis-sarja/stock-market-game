@@ -113,4 +113,46 @@ class FinnhubRepository implements StocksRepository
         }
         return $news;
     }
+
+    public function saveStock($symbol, $data)
+    {
+
+        $payload['token'] = getenv('FINNHUB_API_KEY');
+        $payload['symbol'] = $symbol;
+
+        $client = new \GuzzleHttp\Client(['timeout' => 30]);
+        $response = $client->request(
+            'GET',
+            getenv('FINNHUB_API_URL') . '/stock/profile2',
+            ['query' => $payload]
+        );
+
+        if ($response->getStatusCode() !== 200) {
+            return null;
+        }
+
+        $response = json_decode($response->getBody());
+
+        $companyName = $response->name ?? null;
+
+        if (!$companyName) {
+            return null;
+        }
+
+        $stock = new Stock([
+            'symbol' => $symbol,
+            'company_name' => $companyName,
+            'current_price' => $data->c * 100,
+            'change' => $data->d,
+            'percent_change' => $data->dp,
+            'high_price' => $data->h,
+            'low_price' => $data->l,
+            'open_price' => $data->o,
+            'previous_close_price' => $data->pc,
+            'last_change_time' => $data->t
+        ]);
+
+        $stock->save();
+        return $stock;
+    }
 }
