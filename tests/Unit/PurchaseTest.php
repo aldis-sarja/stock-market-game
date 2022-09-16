@@ -48,7 +48,7 @@ class PurchaseTest extends TestCase
             ['amount', '=', 5],
             ['price', '=', 5],
             ['user_id', '=', $user->id],
-            ['stock_id', '=', $stock-id]
+            ['stock_id', '=', $stock->id]
         ]);
         $this->assertNotNull($purchase);
 
@@ -56,8 +56,10 @@ class PurchaseTest extends TestCase
             ['symbol', '=', 'stock'],
             ['amount', '=', 5],
             ['user_id', '=', $user->id],
-            ['stock_id', '=', $stock-id]
+            ['stock_id', '=', $stock->id]
         ]);
+
+        $this->assertNotNull($portfolio);
 
         (new PurchaseService)->sell(new TransactionRequest(
             $user,
@@ -67,21 +69,23 @@ class PurchaseTest extends TestCase
 
         $this->assertEquals(99998, $user->wallet);
 
-        $purchase = Sale::firstWhere([
+        $sale = Sale::firstWhere([
             ['symbol', '=', 'stock'],
             ['amount', '=', 3],
             ['price', '=', 3],
             ['user_id', '=', $user->id],
-            ['stock_id', '=', $stock-id]
+            ['stock_id', '=', $stock->id]
         ]);
-        $this->assertNotNull($purchase);
+
+        $this->assertNotNull($sale);
 
         $portfolio = StockPortfolio::firstWhere([
             ['symbol', '=', 'stock'],
             ['amount', '=', 2],
             ['user_id', '=', $user->id],
-            ['stock_id', '=', $stock-id]
+            ['stock_id', '=', $stock->id]
         ]);
 
+        $this->assertNotNull($portfolio);
     }
 }

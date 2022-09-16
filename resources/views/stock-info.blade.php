@@ -112,7 +112,7 @@
                                     Buy
                                 </button>
 
-                                <input type="number" name="amount" min="1" step="1" id="amount" required
+                                <input type="number" name="amount" min="1" step="1" id="amount"
                                        class="w-40 text-right rounded-md"
                                        placeholder="Amount"
                                        onchange="change()"
