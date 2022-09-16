@@ -28,12 +28,16 @@ class PurchaseTest extends TestCase
             'last_change_time' => 8
         ]);
 
+        $stock->save();
+
         $user = new User([
             'name' => 'UserName',
             'email' => 'user@email.com',
             'password' => 'user_password',
             'wallet' => 100000,
         ]);
+
+        $user->save();
 
         (new PurchaseService)->buy(new TransactionRequest(
             $user,

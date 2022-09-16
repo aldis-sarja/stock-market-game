@@ -23,7 +23,7 @@ class StockTest extends TestCase
         ]);
         $this->assertEquals('stock', $stock->symbol);
         $this->assertEquals('company', $stock->company_name);
-        $this->assertEquals('1', $stock->current_price);
+        $this->assertEquals(1, $stock->current_price);
         $this->assertEquals(2, $stock->change);
         $this->assertEquals(3, $stock->percent_change);
         $this->assertEquals(4, $stock->high_price);
