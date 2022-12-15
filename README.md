@@ -1,5 +1,5 @@
 # Stock Market Game
-Simple Hacker News fetcher and viewer.
+Stock Market Game for bying and sellin stocks.
 Built with PHP, composer and Laravel 8. 
 
 ## Installation
@@ -37,4 +37,4 @@ If you did stop previously launched commands, then run again  `php artisan queue
 This is essential for updating stock data. 
 
 ## Usage
-
+You are given virtual money with which to start the game of buying and selling stocks. The information about the shares themselves is real.
